@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Shapes;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using static DisplayExtensions.DevMode;
@@ -52,6 +54,14 @@ public class Gets
 
     private unsafe static DisplayModel ConvertMonitorInfoToDisplayInfo(IntPtr hMonitor, PInvoke.User32.MONITORINFOEX mi)
     {
+        System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle
+        {
+            X = mi.WorkArea.left,
+            Y = mi.WorkArea.top,            
+            Height = mi.Monitor.bottom - mi.Monitor.top,
+            Width = mi.Monitor.right - mi.Monitor.left,
+        };
+
         return new DisplayModel
         {            
             Height = mi.Monitor.bottom - mi.Monitor.top,
@@ -65,7 +75,7 @@ public class Gets
             Orientation = GetOrientation(new string(mi.DeviceName)),
             Frequency = GetFrequency(new string(mi.DeviceName)),
             IsAttached = IsAttached(new string(mi.DeviceName)),
-            WorkArea = mi.WorkArea,            
+            WorkArea = rectangle,            
             HMonitor = hMonitor
         };
     }

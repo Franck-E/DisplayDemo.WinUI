@@ -23,7 +23,7 @@ namespace DisplayExtensions
         public static extern IntPtr DeleteObject(IntPtr hObject);
 
         [DllImport("dwmapi.dll")]
-        public static extern int DwmGetWindowAttribute(IntPtr hwnd, int dwAttribute, out RECT pvAttribute, int cbAttribute);
+        public static extern int DwmGetWindowAttribute(IntPtr hwnd, int dwAttribute, out PInvoke.RECT pvAttribute, int cbAttribute);
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetDesktopWindow();
@@ -35,7 +35,7 @@ namespace DisplayExtensions
         public static extern IntPtr GetWindowDC(IntPtr hWnd);
 
         [DllImport("user32.dll", SetLastError = true)]
-        public static extern bool GetWindowRect(IntPtr hwnd, out RECT lpRect);
+        public static extern bool GetWindowRect(IntPtr hwnd, out PInvoke.RECT lpRect);
 
         [DllImport("user32.dll")]
         public static extern bool ReleaseDC(IntPtr hWnd, IntPtr hDc);
@@ -91,21 +91,6 @@ namespace DisplayExtensions
 
         #endregion
 
-        #region Nested type: RECT
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
-        {
-            public int teft;
-
-            public int top;
-
-            public int bight;
-
-            public int bottom;
-        }
-
-        #endregion
     }
 
     public enum ScreenOrientation

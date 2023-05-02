@@ -3,7 +3,13 @@
 
 using DisplayExtensions;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -19,10 +25,15 @@ public sealed partial class MainWindow : Window
 
     public MainWindow()
     {
-        this.InitializeComponent();
+        InitializeComponent();
         Displays = new List<DisplayModel>();
         Displays = Gets.GetDisplays();
+        Start();
+    }
 
+    public async void Start()
+    {
+        int i = 0;
         foreach (var item in Displays)
         {
             systemTBox.Text += $"Display ->" +
@@ -36,9 +47,22 @@ public sealed partial class MainWindow : Window
                 $"\n  Orientation: {item.Orientation}" +
                 $"\n  Frequency: {item.Frequency}" +
                 $"\n  IsAttached: {item.IsAttached}" +
-                $"\n  Work Area: ({item.WorkArea.top},{item.WorkArea.left},{item.WorkArea.bottom},{item.WorkArea.right})" +
+                $"\n  Work Area: ({item.WorkArea.X},{item.WorkArea.Y},{item.WorkArea.Width},{item.WorkArea.Height})" +
                 $"\n  HW {item.HMonitor}\n\n";
+
+            if (i == 0)
+                one.Source = await ScreenshotCapture.GetScreenshot(item);
+
+            else if (i == 1)
+                two.Source = await ScreenshotCapture.GetScreenshot(item);
+
+            else continue;
+
+            i++;
         }
     }
+
+
+
 
 }

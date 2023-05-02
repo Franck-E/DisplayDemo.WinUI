@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System;
+using System.Drawing;
 
 namespace DisplayExtensions;
 
@@ -42,8 +44,11 @@ public partial class DisplayModel : ObservableObject
     private bool isAttached;
 
     [ObservableProperty]
-    private PInvoke.RECT workArea;
+    private Rectangle workArea;
 
     [ObservableProperty]
     private IntPtr hMonitor;
+
+    [ObservableProperty]
+    private BitmapImage image;
 }
