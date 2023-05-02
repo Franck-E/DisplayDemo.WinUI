@@ -12,9 +12,9 @@ public class Gets
     static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip, EnumMonitorsDelegate lpfnEnum, IntPtr dwData);
     delegate bool EnumMonitorsDelegate(IntPtr hMonitor, IntPtr hdcMonitor, ref PInvoke.RECT lprcMonitor, IntPtr dwData);
 
-    public static List<DisplayInfo> GetDisplays()
+    public static List<DisplayModel> GetDisplays()
     {
-        List<DisplayInfo> col = new();
+        List<DisplayModel> col = new();
 
         _ = EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero,
             delegate (IntPtr hMonitor, IntPtr hdcMonitor, ref PInvoke.RECT lprcMonitor, IntPtr dwData)
@@ -24,7 +24,7 @@ public class Gets
                 bool success = PInvoke.User32.GetMonitorInfo(hMonitor, out mi);
                 if (success)
                 {
-                    DisplayInfo di = ConvertMonitorInfoToDisplayInfo(hMonitor, mi);
+                    DisplayModel di = ConvertMonitorInfoToDisplayInfo(hMonitor, mi);
                     col.Add(di);
                 }
                 return true;
@@ -32,9 +32,9 @@ public class Gets
         return col;
     }
 
-    public static DisplayInfo GetDisplay(IntPtr hwnd)
+    public static DisplayModel GetDisplay(IntPtr hwnd)
     {
-        DisplayInfo di = null;
+        DisplayModel di = null;
         IntPtr hMonitor;
         PInvoke.RECT rc;
         PInvoke.User32.GetWindowRect(hwnd, out rc);
@@ -50,9 +50,9 @@ public class Gets
         return di;
     }
 
-    private unsafe static DisplayInfo ConvertMonitorInfoToDisplayInfo(IntPtr hMonitor, PInvoke.User32.MONITORINFOEX mi)
+    private unsafe static DisplayModel ConvertMonitorInfoToDisplayInfo(IntPtr hMonitor, PInvoke.User32.MONITORINFOEX mi)
     {
-        return new DisplayInfo
+        return new DisplayModel
         {            
             Height = mi.Monitor.bottom - mi.Monitor.top,
             Width = mi.Monitor.right - mi.Monitor.left,

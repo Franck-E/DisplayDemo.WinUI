@@ -3,7 +3,7 @@ using System;
 
 namespace DisplayExtensions;
 
-public partial class DisplayInfo : ObservableObject
+public partial class DisplayModel : ObservableObject
 {
     [ObservableProperty]
     private int? id;

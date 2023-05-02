@@ -15,12 +15,12 @@ namespace DisplayDemo;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
-    public List<DisplayInfo> Displays { get; set; }
+    public List<DisplayModel> Displays { get; set; }
 
     public MainWindow()
     {
         this.InitializeComponent();
-        Displays = new List<DisplayInfo>();
+        Displays = new List<DisplayModel>();
         Displays = Gets.GetDisplays();
 
         foreach (var item in Displays)

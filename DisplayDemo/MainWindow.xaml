@@ -10,7 +10,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     mc:Ignorable="d">
 
-    <StackPanel Margin="40" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock Text="" x:Name="systemTBox" TextWrapping="WrapWholeWords"/>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="40 40 20 40" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="" x:Name="systemTBox" TextWrapping="WrapWholeWords"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Margin="20 40 40 20" />
+
+            <Image Grid.Column="1" Margin="20 20 40 40" />
+
+        </Grid>
+    </Grid>
 </Window>
