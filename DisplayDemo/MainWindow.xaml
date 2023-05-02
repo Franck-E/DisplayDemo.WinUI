@@ -26,9 +26,9 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image x:Name="one" Grid.Row="0" Margin="20 40 40 20" MaxWidth="450" Stretch="Uniform" />
+            <Image x:Name="one" Grid.Row="0" Margin="20 50 50 10" MaxHeight="250" MaxWidth="450" Stretch="Fill" />
 
-            <Image x:Name="two" Grid.Row="1" Margin="20 20 40 40" MaxWidth="450" Stretch="Uniform" />
+            <Image x:Name="two" Grid.Row="1" Margin="20 10 50 50" MaxHeight="250" MaxWidth="450" Stretch="Fill" />
             
             
 

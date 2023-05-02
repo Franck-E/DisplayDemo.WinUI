@@ -3,13 +3,7 @@
 
 using DisplayExtensions;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media.Imaging;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Storage.Streams;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -51,10 +45,10 @@ public sealed partial class MainWindow : Window
                 $"\n  HW {item.HMonitor}\n\n";
 
             if (i == 0)
-                one.Source = await ScreenshotCapture.GetScreenshot(item);
+                one.Source = await Capture.GetScreenshot(item);
 
             else if (i == 1)
-                two.Source = await ScreenshotCapture.GetScreenshot(item);
+                two.Source = await Capture.GetScreenshot(item);
 
             else continue;
 

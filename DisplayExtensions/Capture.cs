@@ -11,7 +11,7 @@ using Windows.Graphics.Imaging;
 
 namespace DisplayExtensions;
 
-public class ScreenshotCapture
+public class Capture
 {
     #region Methods
 
